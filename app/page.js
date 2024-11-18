@@ -2,7 +2,7 @@
 
 import Header from './components/Header';
 import Footer from './components/Footer';
-import QuotationCart from './catalog/QuotationCart';
+import ReviewSection from './components/ReviewSection';
 import HeroSection from './components/HeroSection';
 import FeaturedProducts from './components/FeaturedProducts';
 import fetchProducts from './components/fetchProducts';
