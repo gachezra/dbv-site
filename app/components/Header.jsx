@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from "next/link";
 import { Menu, X, Phone, Mail, MapPin, ChevronDown } from 'lucide-react';
 
 const Header = ({ pageTitle = 'DBV Enterprises', pageDescription = 'Your trusted partner in electronics & supplies' }) => {
@@ -29,15 +30,15 @@ const Header = ({ pageTitle = 'DBV Enterprises', pageDescription = 'Your trusted
             <div className="flex items-center space-x-6">
               <span className="flex items-center hover:text-sky-100 transition-colors">
                 <Phone className="h-4 w-4 mr-2" />
-                <a href="tel:+254700000000">
+                <Link href="tel:+254700000000">
                   +254 700 000 000
-                </a>
+                </Link>
               </span>
               <span className="flex items-center hover:text-sky-100 transition-colors">
                 <Mail className="h-4 w-4 mr-2" />
-                <a href="mailto:info@dbv.co.ke">
+                <Link href="mailto:info@dbv.co.ke">
                   info@dbv.co.ke
-                </a>
+                </Link>
               </span>
             </div>
             <div className="flex items-center hover:text-sky-100 transition-colors">
@@ -56,7 +57,7 @@ const Header = ({ pageTitle = 'DBV Enterprises', pageDescription = 'Your trusted
           <div className="flex justify-between items-center h-20 px-4 sm:px-6 lg:px-8">
             {/* Logo */}
             <div className="flex-shrink-0">
-              <a href="/" className="flex items-center space-x-3">
+              <Link href="/" className="flex items-center space-x-3">
                 <div className="w-12 h-12 bg-gradient-to-br from-sky-500 to-sky-700 rounded-xl flex items-center justify-center shadow-lg">
                   <span className="text-white font-bold text-2xl">D</span>
                 </div>
@@ -64,20 +65,20 @@ const Header = ({ pageTitle = 'DBV Enterprises', pageDescription = 'Your trusted
                   <h1 className="text-2xl font-bold text-gray-900">DBV</h1>
                   <p className="text-sm text-sky-600">Enterprises</p>
                 </div>
-              </a>
+              </Link>
             </div>
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-1">
               {navigationLinks.map((link) => (
-                <a
+                <Link
                   key={link.name}
                   href={link.href}
                   className="relative group px-4 py-2 text-gray-600 hover:text-sky-600 font-medium transition-colors duration-200"
                 >
                   <span>{link.name}</span>
                   <span className="absolute bottom-0 left-0 w-full h-0.5 bg-sky-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200"></span>
-                </a>
+                </Link>
               ))}
             </nav>
 
@@ -102,13 +103,13 @@ const Header = ({ pageTitle = 'DBV Enterprises', pageDescription = 'Your trusted
           <div className="md:hidden bg-white border-t border-gray-100">
             <div className="px-4 pt-2 pb-3 space-y-1">
               {navigationLinks.map((link) => (
-                <a
+                <Link
                   key={link.name}
                   href={link.href}
                   className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-sky-600 hover:bg-sky-50 rounded-lg transition-colors duration-200"
                 >
                   {link.name}
-                </a>
+                </Link>
               ))}
             </div>
           </div>

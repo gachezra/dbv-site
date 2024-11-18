@@ -54,11 +54,6 @@ const ReviewsSection = () => {
               </div>
               <p className="text-gray-700 mb-6">{review.content}</p>
               <div className="flex items-center gap-4">
-                <img
-                  src={review.image}
-                  alt={review.name}
-                  className="w-12 h-12 rounded-full"
-                />
                 <div>
                   <h4 className="font-semibold text-gray-900">{review.name}</h4>
                   <p className="text-sm text-gray-600">{review.role}</p>

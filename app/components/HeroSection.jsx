@@ -1,4 +1,5 @@
 import { ArrowRight, Shield, Truck, Clock } from 'lucide-react';
+import Link from "next/link";
 
 const HeroSection = () => {
   return (
@@ -15,18 +16,18 @@ const HeroSection = () => {
               Discover cutting-edge technology solutions for your business. Quality assured, competitively priced, and backed by expert support.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <a
+              <Link
                 href="/catalog"
                 className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg bg-white text-sky-900 hover:bg-gray-100 transition duration-150"
               >
                 Get Started <ArrowRight className="ml-2 h-5 w-5" />
-              </a>
-              <a
+              </Link>
+              <Link
                 href="#featured-products"
                 className="inline-flex items-center justify-center px-6 py-3 border-2 border-white text-base font-medium rounded-lg text-white hover:bg-white/10 transition duration-150"
               >
                 View Products
-              </a>
+              </Link>
             </div>
           </div>
           <div className="grid grid-cols-2 gap-6">
