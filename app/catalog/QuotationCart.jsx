@@ -58,7 +58,7 @@ const QuotationCart = ({ selectedProducts, onRemoveItem }) => {
         }`}
       >
         {/* Cart Header */}
-        <div className="bg-sky-600 text-white p-4 flex justify-between items-center sticky top-40 z-10">
+        <div className="bg-sky-600 text-white p-4 flex justify-between items-center sticky top-10 z-10">
           <h2 className="text-xl font-semibold flex items-center gap-2">
             <ShoppingCart size={24} />
             Your Quotation
