@@ -4,7 +4,6 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import QuotationCart from './catalog/QuotationCart';
 import HeroSection from './components/HeroSection';
-import ReviewsSection from './components/ReviewsSection';
 import FeaturedProducts from './components/FeaturedProducts';
 import fetchProducts from './components/fetchProducts';
 
@@ -37,7 +36,6 @@ export default function Home() {
 
       {/* <FeaturedProducts products={products} /> */}
       <ReviewsSection />
-      <QuotationCart />
 
       <Footer />
     </div>
