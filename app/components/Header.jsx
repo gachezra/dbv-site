@@ -50,7 +50,7 @@ const Header = ({ pageTitle = 'DBV Enterprises', pageDescription = 'Your trusted
       </div>
 
       {/* Main Header */}
-      <header className={`bg-white sticky top-0 z-50 transition-all duration-200 ${
+      <header className={`bg-white sticky transition-all duration-200 ${
         isScrolled ? 'shadow-md' : ''
       }`}>
         <div className="max-w-7xl mx-auto">
