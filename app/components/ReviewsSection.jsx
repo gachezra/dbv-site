@@ -37,7 +37,7 @@ const ReviewsSection = () => {
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Trusted by Industry Leaders</h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Don't just take our word for it. Here's what our clients have to say about their experience with DBV Enterprises.
+            Don&apos;t just take our word for it. Here&apos;s what our clients have to say about their experience with DBV Enterprises.
           </p>
         </div>
         
