@@ -2,7 +2,7 @@ export default function ProductCard({ product }) {
   return (
     <div className="bg-white shadow-md p-4 rounded-lg">
       <h2 className="font-semibold text-lg">{product.name}</h2>
-      <p>Price: ${product.price}</p>
+      <p>Price: Ksh. {product.price}</p>
       <p>Stock: {product.stock}</p>
       <a
         href="/quotation"

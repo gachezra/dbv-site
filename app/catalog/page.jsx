@@ -1,0 +1,114 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import QuotationCart from './QuotationCart';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import { Package } from 'lucide-react';
+
+export default function Quotation() {
+  const [selectedProducts, setSelectedProducts] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchData() {
+      setLoading(true);
+      try {
+        const response = await axios.get("/api/products");
+        setProducts(response.data);
+      } catch (error) {
+        console.error("Failed to fetch products:", error.response?.data || error.message);
+        alert("Failed to load products. Please try again later.");
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchData();
+  }, []);
+
+  const handleAddToQuotation = (product, quantity) => {
+    if (quantity > 0) {
+      const updatedProducts = [...selectedProducts];
+      updatedProducts.push({ ...product, quantity });
+      setSelectedProducts(updatedProducts);
+    }
+  };
+
+  const handleRemoveItem = (index) => {
+    const updatedProducts = selectedProducts.filter((_, i) => i !== index);
+    setSelectedProducts(updatedProducts);
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-gray-100 to-gray-200">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-sky-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading products...</p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-gray-100 to-gray-200">
+      <QuotationCart 
+        selectedProducts={selectedProducts}
+        onRemoveItem={handleRemoveItem}
+      />
+      
+      <Header />
+
+      <main className="p-4 md:p-6 lg:p-8 max-w-7xl mx-auto">
+        <section>
+          <div className="flex items-center gap-3 mb-6">
+            <Package className="text-sky-600" size={28} />
+            <h2 className="text-2xl font-semibold text-gray-700">Available Products</h2>
+          </div>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+            {products.map((product) => (
+              <div
+                key={product.id}
+                className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-all duration-200 border border-gray-200/80"
+              >
+                <h3 className="text-lg font-bold text-gray-800 mb-2">{product.name}</h3>
+                <div className="space-y-2">
+                  <p className="text-sky-600 font-semibold">Ksh. {product.price}</p>
+                  <p className="text-sm text-gray-500">
+                    {product.stock} units available
+                  </p>
+                </div>
+                <div className="mt-4">
+                  <label
+                    htmlFor={`quantity-${product.id}`}
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
+                    Select Quantity:
+                  </label>
+                  <select
+                    id={`quantity-${product.id}`}
+                    className="w-full p-2 border border-gray-300 rounded-lg text-gray-700 focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition-shadow duration-200"
+                    onChange={(e) => handleAddToQuotation(product, parseInt(e.target.value, 10))}
+                    defaultValue=""
+                  >
+                    <option value="" disabled>-- Choose --</option>
+                    {Array.from({ length: product.stock }, (_, i) => i + 1).map((qty) => (
+                      <option key={qty} value={qty}>
+                        {qty} {qty === 1 ? 'unit' : 'units'}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      </main>
+
+      <Footer />
+    </div>
+  );
+}
