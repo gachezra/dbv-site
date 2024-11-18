@@ -1,33 +1,38 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import QuotationCart from './QuotationCart';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Package } from 'lucide-react';
 
-export default function Quotation() {
+export async function getStaticProps() {
+  try {
+    // Fetch data from API
+    const response = await axios.get("/api/products");
+
+    // Return the products as props
+    return {
+      props: {
+        products: response.data, // Assuming the API returns the products data in an array
+      },
+    };
+  } catch (error) {
+    console.error("Failed to fetch products:", error.response?.data || error.message);
+
+    // Return empty products in case of error
+    return {
+      props: {
+        products: [],
+      },
+    };
+  }
+}
+
+export default function Quotation({ products }) {
   const [selectedProducts, setSelectedProducts] = useState([]);
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchData() {
-      setLoading(true);
-      try {
-        const response = await axios.get("/api/products");
-        setProducts(response.data);
-      } catch (error) {
-        console.error("Failed to fetch products:", error.response?.data || error.message);
-        alert("Failed to load products. Please try again later.");
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchData();
-  }, []);
-
+ 
   const handleAddToQuotation = (product, quantity) => {
     if (quantity > 0) {
       const updatedProducts = [...selectedProducts];
@@ -40,17 +45,6 @@ export default function Quotation() {
     const updatedProducts = selectedProducts.filter((_, i) => i !== index);
     setSelectedProducts(updatedProducts);
   };
-
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-gray-100 to-gray-200">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-sky-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading products...</p>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-100 to-gray-200">
