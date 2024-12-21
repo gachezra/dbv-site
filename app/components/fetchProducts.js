@@ -5,7 +5,7 @@ export default async function fetchProducts(){
   try {
     const response = await axios.get(`${baseURL}/api/products`);
     if (response.status === 200) {
-      return response.data;
+      return response.data; 
     } else {
       return [];
     }
